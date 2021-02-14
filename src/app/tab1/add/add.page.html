@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Add Heroe</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="secondary" (click)="closing();">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>    
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" ion-padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label position="stacked">ID</ion-label>
+          <ion-input [(ngModel)]="heroe.id"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Nombre</ion-label>
+          <ion-input [(ngModel)]="heroe.nombre"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Poder</ion-label>
+          <ion-input [(ngModel)]="heroe.poder"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">URL Imagen</ion-label>
+          <ion-input [(ngModel)]="heroe.img"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Estado</ion-label>
+          <ion-select placeholder="Seleccionar" [(ngModel)]="heroe.vivo">
+            <ion-select-option value="vivo">Vivo</ion-select-option>
+            <ion-select-option value="muerto">Muerto</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        
+        <ion-button color="success" expand="block" (click)="addHeroe();">Agregar</ion-button>
+       
+        
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
