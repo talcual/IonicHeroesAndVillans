@@ -15,7 +15,12 @@
 
     <ion-card *ngFor="let heroe of heroes; let i = index">      
       <ion-card-header>
-        <ion-card-title>{{ heroe.nombre }}</ion-card-title>
+        <ion-card-title>
+            {{ heroe.nombre }}
+            <ion-button color="warning" size="small" class="ion-float-right" shape="round" (click) = "addFavoritos(heroe.id)">
+                <ion-icon slot="icon-only" name="star" ></ion-icon>
+            </ion-button>
+        </ion-card-title>
       </ion-card-header>
       <ion-card-content>
         <ion-grid>

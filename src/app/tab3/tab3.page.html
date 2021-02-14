@@ -14,7 +14,11 @@
 <ion-content [fullscreen]="true">
   <ion-card *ngFor="let villano of villanos; let i = index">      
     <ion-card-header>
-      <ion-card-title>{{ villano.nombre }}</ion-card-title>
+      <ion-card-title>{{ villano.nombre }}
+      <ion-button color="warning" size="small" class="ion-float-right" shape="round" (click) = "addFavoritos(villano.id)">
+        <ion-icon slot="icon-only" name="star" ></ion-icon>
+      </ion-button>
+    </ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <ion-grid>

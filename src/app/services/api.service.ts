@@ -14,7 +14,7 @@ import { map } from "rxjs/operators";
 export class ApiService {
 
   constructor(private _http: HttpClient) { }
-  private url = 'firebaseurlrealtime';
+  private url = 'https://beermagazine-622c3.firebaseio.com/';
 
 
   // CREADORES 
@@ -38,27 +38,53 @@ export class ApiService {
     );
   }
 
+  addFavoritos(favorito: any) {
+    return this._http.post(`${this.url}/favoritos.json`, favorito).pipe(
+      map((resp: any) => {
+
+      })
+    );
+  }
+
 
   // ACTUALIZADORES
   actualizarHereo(heroe: HeroeModel) {
-    
     const heroeTemp = {
       ...heroe
     }
 
     delete heroeTemp.id;
-
     return this._http.put(`${this.url}/heroe/${heroe.id}.json`, heroeTemp);
-
   }
- 
-  borrarHeroe(id: string) {
-    return this._http.delete(`${this.url}/heroe/${id}.json`);
+
+  actualizarVillano(villano: VillanoModel) {
+    const villanoTemp = {
+      ...villano
+    }
+
+    delete villanoTemp.id;
+    return this._http.put(`${this.url}/heroe/${villano.id}.json`, villanoTemp);
   }
   
 
+  // Borrar Heroe
+  borrarHeroe(id: string) {
+    return this._http.delete(`${this.url}/heroe/${id}.json`);
+  }
+
+  // Borrar Villano
+  borrarVillano(id: string) {
+    return this._http.delete(`${this.url}/villano/${id}.json`);
+  }
+  
+
+  // Getters
   getHeroe(id: string) {
     return this._http.get(`${this.url}/heroe/${id}.json`);
+  }
+
+  getVillano(id: string) {
+    return this._http.get(`${this.url}/villano/${id}.json`);
   }
 
   getHeroes() {
@@ -72,6 +98,16 @@ export class ApiService {
       map(this.crearArreglo)
     );
   }
+
+
+  // Get Favoritos
+
+  getFavoritos() {
+    return this._http.get(`${this.url}/favoritos.json`).pipe(
+      map(this.crearArreglo)
+    );
+  }
+
 
   private crearArreglo(heroesOBJ: object) {
     
@@ -90,6 +126,7 @@ export class ApiService {
     return heroes.reverse();
 
   }
+
 
 
 }
